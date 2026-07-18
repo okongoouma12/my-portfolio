@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okong'o Ouma | Website Developer Nairobi</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+--bg:#f7f8fc;
+--bg2:#ffffff;
+--bg3:#eef0f7;
+--accent:#1a56db;
+--accent2:#1648c0;
+--accent-green:#059669;
+--accent-purple:#7c3aed;
+--accent-orange:#ea580c;
+--text:#0f172a;
+--text2:#64748b;
+--border:#e2e8f0;
+--card:#ffffff;
+--shadow:0 4px 24px rgba(15,23,42,.08);
+--shadow-lg:0 12px 40px rgba(15,23,42,.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0 5%;height:68px;background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);box-shadow:0 1px 12px rgba(15,23,42,.06);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--text);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-menu{display:flex;align-items:center;gap:.4rem;list-style:none;}
+.nav-menu>li{position:relative;}
+.nav-menu>li>a{display:flex;align-items:center;gap:5px;color:var(--text2);text-decoration:none;font-size:.875rem;padding:.5rem .9rem;border-radius:8px;transition:color .2s,background .2s;}
+.nav-menu>li>a:hover{color:var(--text);background:var(--bg3);}
+.chevron{font-size:.6rem;transition:transform .2s;}
+.nav-menu>li:hover .chevron{transform:rotate(180deg);}
+.dropdown{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid var(--border);border-radius:12px;min-width:190px;padding:.5rem;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s;z-index:300;box-shadow:var(--shadow-lg);}
+.nav-menu>li:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.dropdown a{display:flex;align-items:center;gap:10px;padding:.6rem .9rem;color:var(--text2);text-decoration:none;font-size:.855rem;border-radius:8px;transition:color .2s,background .2s;}
+.dropdown a:hover{color:var(--accent);background:var(--bg3);}
+.dropdown a i{width:14px;text-align:center;font-size:.75rem;}
+.nav-hire{background:var(--accent)!important;color:#fff!important;padding:.5rem 1.3rem!important;border-radius:100px!important;font-weight:600!important;}
+.nav-hire:hover{background:var(--accent2)!important;color:#fff!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:1.5rem 5%;z-index:190;flex-direction:column;gap:.4rem;box-shadow:var(--shadow);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.95rem;transition:color .2s;}
+.mobile-menu a:hover{color:var(--accent);}
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:68px 5% 0;position:relative;overflow:hidden;gap:4rem;}
+.hero::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(26,86,219,.06) 0%,transparent 65%);top:50%;right:-150px;transform:translateY(-50%);border-radius:50%;pointer-events:none;}
+.hero::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,.04) 0%,transparent 65%);bottom:-100px;left:-100px;border-radius:50%;pointer-events:none;}
+.hero-left{animation:fadeUp .9s ease both;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;padding:.35rem 1rem;border-radius:100px;font-size:.78rem;color:var(--accent);margin-bottom:1.8rem;letter-spacing:.4px;font-weight:500;}
+.dot{width:7px;height:7px;background:var(--accent-green);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-greeting{font-size:1rem;color:var(--text2);font-weight:300;margin-bottom:.4rem;}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:.5rem;}
+.hero-name .accent{color:var(--accent);}
+.hero-tagline{font-family:'Syne',sans-serif;font-size:clamp(1.1rem,2vw,1.5rem);font-weight:600;color:var(--text2);margin-bottom:1.5rem;letter-spacing:-.3px;}
+.hero-statement{font-size:1rem;color:var(--text2);line-height:1.9;font-weight:300;max-width:460px;margin-bottom:2.5rem;}
+.hero-statement strong{color:var(--accent);font-weight:600;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-primary{background:var(--accent);color:#fff;padding:.85rem 1.8rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .25s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(26,86,219,.3);}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,86,219,.4);}
+.btn-outline{background:transparent;color:var(--text);padding:.85rem 1.8rem;border-radius:100px;text-decoration:none;font-weight:500;font-size:.9rem;border:1.5px solid var(--border);transition:all .25s;display:inline-flex;align-items:center;gap:8px;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.social-row{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;}
+.social-label{font-size:.78rem;color:var(--text2);letter-spacing:.4px;margin-right:.2rem;}
+.social-icon{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:.9rem;text-decoration:none;transition:all .2s;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.social-icon:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.1);}
+.social-icon.google:hover{color:#EA4335;border-color:#EA4335;}
+.social-icon.twitter:hover{color:#1DA1F2;border-color:#1DA1F2;}
+.social-icon.linkedin:hover{color:#0A66C2;border-color:#0A66C2;}
+.social-icon.github:hover{color:#333;border-color:#333;}
+.social-icon.instagram:hover{color:#E1306C;border-color:#E1306C;}
+.social-icon.whatsapp:hover{color:#25D366;border-color:#25D366;}
+.hero-stats{display:flex;gap:2.5rem;padding:1.8rem 0;border-top:1px solid var(--border);margin-top:2.5rem;animation:fadeUp .9s .4s ease both;}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--accent);line-height:1;}
+.stat-lbl{font-size:.76rem;color:var(--text2);margin-top:3px;}
+.hero-right{display:flex;justify-content:center;animation:fadeUp .9s .2s ease both;}
+.profile-card{position:relative;width:340px;}
+.profile-img-box{width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,#eff6ff,#dbeafe);border-radius:24px;border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:7rem;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
+.profile-img-box::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(239,246,255,.5));}
+.float-badge{position:absolute;background:#fff;border:1px solid var(--border);border-radius:14px;padding:.8rem 1.1rem;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);}
+.float-badge.tl{top:1.2rem;left:-2rem;}
+.float-badge.br{bottom:1.5rem;right:-2rem;}
+.fb-icon{width:34px;height:34px;background:#eff6ff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.fb-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--accent);line-height:1;}
+.fb-lbl{color:var(--text2);font-size:.7rem;}
+/* GO DIGITAL */
+.go-digital{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#0f172a 100%);padding:6rem 5%;position:relative;overflow:hidden;}
+.go-digital::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.15) 0%,transparent 65%);top:-100px;right:-100px;border-radius:50%;pointer-events:none;}
+.go-digital::after{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(26,86,219,.12) 0%,transparent 65%);bottom:-100px;left:-100px;border-radius:50%;pointer-events:none;}
+.gd-text-light{color:rgba(255,255,255,.95);}
+.gd-text-muted{color:rgba(255,255,255,.6);}
+.gd-top{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:4rem;position:relative;z-index:1;}
+.gd-label{display:inline-block;font-size:.72rem;font-weight:500;color:#a5b4fc;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:.8rem;}
+.gd-headline{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:1.3rem;color:#fff;}
+.gd-headline .accent-purple{color:#a78bfa;}
+.gd-sub{font-size:.95rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.85;margin-bottom:1.2rem;}
+.problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08);}
+.problem-card{background:rgba(255,255,255,.04);padding:1.8rem;transition:background .3s;}
+.problem-card:hover{background:rgba(255,255,255,.08);}
+.problem-icon{width:42px;height:42px;background:rgba(167,139,250,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem;}
+.problem-card h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:#fff;}
+.problem-card p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;}
+.solution-bar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:2.5rem;display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;margin-bottom:3rem;position:relative;z-index:1;}
+.sol-col h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;color:#fff;}
+.sol-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.sol-col li{display:flex;align-items:center;gap:10px;font-size:.855rem;color:rgba(255,255,255,.55);font-weight:300;}
+.sol-col li i{font-size:.72rem;width:14px;}
+.bad li i{color:#f87171;}
+.good li i{color:#34d399;}
+.good li{color:rgba(255,255,255,.85);}
+.sol-divider{width:1px;height:100%;background:rgba(255,255,255,.1);position:relative;display:flex;align-items:center;justify-content:center;}
+.sol-vs{position:absolute;background:#1e1b4b;border:1px solid rgba(255,255,255,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.6);font-family:'Syne',sans-serif;}
+.gd-cta{background:linear-gradient(135deg,rgba(26,86,219,.3),rgba(124,58,237,.2));border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;position:relative;z-index:1;}
+.gd-cta h3{font-family:'Syne',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:800;letter-spacing:-.5px;color:#fff;}
+.gd-cta p{color:rgba(255,255,255,.55);font-size:.875rem;margin-top:.3rem;font-weight:300;}
+.btn-white{background:#fff;color:var(--accent);padding:.85rem 1.8rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .25s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.2);}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25);}
+.btn-ghost{background:transparent;color:#fff;padding:.85rem 1.8rem;border-radius:100px;text-decoration:none;font-weight:500;font-size:.9rem;border:1.5px solid rgba(255,255,255,.2);transition:all .25s;display:inline-flex;align-items:center;gap:8px;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);transform:translateY(-2px);}
+/* SERVICES */
+.section-label{display:inline-block;font-size:.72rem;font-weight:500;color:var(--accent);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:.8rem;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-1px;margin-bottom:.8rem;}
+.section-sub{color:var(--text2);font-size:.92rem;font-weight:300;line-height:1.85;margin-bottom:1.2rem;}
+.section-header{margin-bottom:3rem;}
+#services{padding:6rem 5%;background:var(--bg);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.service-card{background:#fff;border:1.5px solid var(--border);padding:2.5rem;border-radius:20px;transition:all .3s;box-shadow:var(--shadow);}
+.service-card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:var(--shadow-lg);}
+.service-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.5rem;}
+.service-icon.blue{background:#eff6ff;color:var(--accent);}
+.service-icon.green{background:#ecfdf5;color:var(--accent-green);}
+.service-icon.purple{background:#f5f3ff;color:var(--accent-purple);}
+.service-icon.orange{background:#fff7ed;color:var(--accent-orange);}
+.service-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.7rem;}
+.service-card p{color:var(--text2);font-size:.865rem;line-height:1.75;font-weight:300;}
+.service-arrow{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:.82rem;margin-top:1.2rem;text-decoration:none;font-weight:500;transition:gap .2s;}
+.service-arrow:hover{gap:10px;}
+/* PROJECTS */
+#projects{padding:6rem 5%;background:var(--bg2);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;}
+.proj-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;box-shadow:var(--shadow);}
+.proj-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+/* Project preview frame */
+.proj-preview{position:relative;height:300px;overflow:hidden;background:var(--bg3);border-bottom:1px solid var(--border);}
+.proj-browser-bar{display:flex;align-items:center;gap:7px;padding:.65rem 1rem;background:#fff;border-bottom:1px solid var(--border);}
+.dot-red{width:9px;height:9px;border-radius:50%;background:#ff5f57;flex-shrink:0;}
+.dot-yellow{width:9px;height:9px;border-radius:50%;background:#ffbd2e;flex-shrink:0;}
+.dot-green{width:9px;height:9px;border-radius:50%;background:#28c840;flex-shrink:0;}
+.proj-url{flex:1;background:var(--bg3);border-radius:6px;padding:.28rem .8rem;font-size:.7rem;color:var(--text2);margin-left:.4rem;display:flex;align-items:center;gap:5px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.proj-url i{font-size:.6rem;color:var(--accent-green);flex-shrink:0;}
+.proj-iframe-wrap{height:260px;overflow:hidden;position:relative;}
+.proj-iframe-wrap iframe{width:150%;height:400px;border:none;transform:scale(0.667);transform-origin:top left;pointer-events:none;}
+.proj-body{padding:1.5rem;}
+.proj-tag{display:inline-block;font-size:.72rem;padding:.2rem .8rem;border-radius:100px;margin-bottom:.7rem;font-weight:500;}
+.proj-tag.blue{background:#eff6ff;color:var(--accent);}
+.proj-tag.green{background:#ecfdf5;color:var(--accent-green);}
+.proj-tag.orange{background:#fff7ed;color:var(--accent-orange);}
+.proj-body h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.5rem;}
+.proj-body p{color:var(--text2);font-size:.855rem;line-height:1.7;font-weight:300;}
+.proj-meta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;}
+.proj-chip{font-size:.72rem;padding:.2rem .7rem;border-radius:6px;background:var(--bg3);color:var(--text2);font-weight:400;}
+/* RATE CARDS */
+#rates{padding:6rem 5%;background:var(--bg);}
+.rates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;}
+.rate-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;box-shadow:var(--shadow);}
+.rate-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.rate-card-head{padding:1.8rem 2rem 1.5rem;border-bottom:1px solid var(--border);}
+.rate-card-head.blue{background:linear-gradient(135deg,#eff6ff,#dbeafe);}
+.rate-card-head.purple{background:linear-gradient(135deg,#f5f3ff,#ede9fe);}
+.rate-card-head.green{background:linear-gradient(135deg,#ecfdf5,#d1fae5);}
+.rate-card-head.orange{background:linear-gradient(135deg,#fff7ed,#fed7aa);}
+.rate-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;}
+.rate-icon.blue{background:#fff;color:var(--accent);box-shadow:0 2px 8px rgba(26,86,219,.15);}
+.rate-icon.purple{background:#fff;color:var(--accent-purple);box-shadow:0 2px 8px rgba(124,58,237,.15);}
+.rate-icon.green{background:#fff;color:var(--accent-green);box-shadow:0 2px 8px rgba(5,150,105,.15);}
+.rate-icon.orange{background:#fff;color:var(--accent-orange);box-shadow:0 2px 8px rgba(234,88,12,.15);}
+.rate-card-head h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:.3rem;}
+.rate-card-head p{font-size:.78rem;color:var(--text2);font-weight:300;}
+.rate-body{padding:1.8rem 2rem;}
+.rate-cat{font-size:.7rem;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:.9rem;margin-top:1.2rem;}
+.rate-cat:first-child{margin-top:0;}
+.rate-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:.5rem;}
+.rate-list li{display:flex;justify-content:space-between;align-items:center;font-size:.84rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+.rate-list li:last-child{border-bottom:none;padding-bottom:0;}
+.rate-list li span:first-child{color:var(--text2);font-weight:300;}
+.rate-list li span:last-child{font-weight:700;font-size:.8rem;color:var(--text);}
+.rate-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:1.5rem;padding:.8rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.875rem;transition:all .2s;}
+.rate-btn.blue{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(26,86,219,.25);}
+.rate-btn.blue:hover{background:var(--accent2);}
+.rate-btn.purple{background:var(--accent-purple);color:#fff;box-shadow:0 4px 12px rgba(124,58,237,.25);}
+.rate-btn.purple:hover{background:#6d28d9;}
+.rate-btn.green{background:var(--accent-green);color:#fff;box-shadow:0 4px 12px rgba(5,150,105,.25);}
+.rate-btn.green:hover{background:#047857;}
+.rate-btn.orange{background:var(--accent-orange);color:#fff;box-shadow:0 4px 12px rgba(234,88,12,.25);}
+.rate-btn.orange:hover{background:#c2410c;}
+/* ABOUT */
+#about{padding:6rem 5%;background:linear-gradient(135deg,#f8faff 0%,#f0f4ff 100%);}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:center;}
+.about-img-box{aspect-ratio:4/5;background:linear-gradient(145deg,#dbeafe,#ede9fe);border-radius:24px;border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
+.about-img-box::after{content:'Nairobi 🇰🇪';position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;font-family:'Syne',sans-serif;padding:.4rem 1rem;border-radius:100px;white-space:nowrap;}
+.about-text p{color:var(--text2);font-weight:300;line-height:1.9;font-size:.92rem;margin-bottom:1.2rem;}
+.skills-chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem;}
+.chip{background:#fff;border:1.5px solid var(--border);color:var(--text);padding:.35rem .9rem;border-radius:100px;font-size:.78rem;transition:all .2s;cursor:default;box-shadow:0 1px 4px rgba(0,0,0,.04);}
+.chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+/* CONTACT */
+#contact{padding:6rem 5%;background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
+.contact-details{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+.c-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:#fff;border:1.5px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:all .2s;box-shadow:var(--shadow);}
+.c-item:hover{border-color:var(--accent);transform:translateX(5px);box-shadow:var(--shadow-lg);}
+.c-icon{width:38px;height:38px;background:#eff6ff;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.9rem;flex-shrink:0;}
+.c-label{font-size:.72rem;color:var(--text2);}
+.c-val{font-size:.875rem;font-weight:500;}
+.contact-form{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:2.5rem;box-shadow:var(--shadow);}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:.78rem;color:var(--text2);margin-bottom:.45rem;font-weight:500;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--bg3);border:1.5px solid var(--border);color:var(--text);padding:.8rem 1rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.875rem;outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);background:#fff;}
+.form-group textarea{resize:vertical;min-height:110px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+/* FOOTER */
+footer{background:var(--text);padding:2.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+.footer-logo span{color:#a5b4fc;}
+footer p{color:rgba(255,255,255,.5);font-size:.82rem;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.82rem;transition:color .2s;}
+.footer-links a:hover{color:#fff;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;padding-top:100px;gap:3rem;}
+.hero-right{display:none;}
+.gd-top{grid-template-columns:1fr;gap:3rem;}
+.problems-grid{grid-template-columns:1fr 1fr;}
+.about-grid{grid-template-columns:1fr;gap:3rem;}
+.contact-grid{grid-template-columns:1fr;}
+.solution-bar{grid-template-columns:1fr;}
+.sol-divider{display:none;}
+.hamburger{display:flex;}
+.nav-menu{display:none;}
+.form-row{grid-template-columns:1fr;}
+footer{flex-direction:column;text-align:center;}
+}
+@media(max-width:600px){.problems-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+<a href="#home" class="nav-logo">Okong'o<span>.</span></a>
+<ul class="nav-menu">
+<li>
+<a href="#about">About <i class="fa fa-chevron-down chevron"></i></a>
+<div class="dropdown">
+<a href="#about"><i class="fa fa-user"></i> Who I Am</a>
+<a href="#about"><i class="fa fa-code"></i> My Skills</a>
+<a href="#projects"><i class="fa fa-briefcase"></i> Experience</a>
+</div>
+</li>
+<li>
+<a href="#services">Services <i class="fa fa-chevron-down chevron"></i></a>
+<div class="dropdown">
+<a href="#services"><i class="fa fa-mobile-alt"></i> App Development</a>
+<a href="#services"><i class="fa fa-cogs"></i> Systems Development</a>
+<a href="#services"><i class="fa fa-paint-brush"></i> Graphic Design</a>
+<a href="#services"><i class="fa fa-globe"></i> Website Development</a>
+</div>
+</li>
+<li>
+<a href="#projects">Projects <i class="fa fa-chevron-down chevron"></i></a>
+<div class="dropdown">
+<a href="#projects"><i class="fa fa-store"></i> Chama App</a>
+<a href="#projects"><i class="fa fa-pills"></i> Pharmacy POS</a>
+<a href="#projects"><i class="fa fa-chart-line"></i> Dashboards</a>
+</div>
+</li>
+<li><a href="#contact">Contact</a></li>
+<li><a href="#contact" class="nav-hire">Hire Me</a></li>
+</ul>
+<div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#about" onclick="toggleMenu()">About</a>
+<a href="#services" onclick="toggleMenu()">Services</a>
+<a href="#projects" onclick="toggleMenu()">Projects</a>
+<a href="#contact" onclick="toggleMenu()">Contact</a>
+<a href="#contact" onclick="toggleMenu()" style="color:var(--accent);font-weight:600;">Hire Me →</a>
+</div>
+<!-- PAGE 1: HERO -->
+<section class="hero" id="home">
+<div class="hero-left">
+<div class="hero-badge"><div class="dot"></div> Available for work — Nairobi &amp; Remote</div>
+<p class="hero-greeting">Hello, I'm</p>
+<h1 class="hero-name">Okong'o<br><span class="accent">Ouma.</span></h1>
+<p class="hero-tagline">Website Developer &amp; Digital Consultant</p>
+<p class="hero-statement">
+<strong>Your business success begins with going Digital.</strong><br>
+I help Kenyan businesses move from manual processes to smart, scalable digital systems — POS systems, mobile apps, data dashboards, and beautiful brands.
+</p>
+<div class="hero-btns">
+<a href="#projects" class="btn-primary"><i class="fa fa-eye"></i> View My Work</a>
+<a href="#contact" class="btn-outline"><i class="fa fa-paper-plane"></i> Let's Talk</a>
+</div>
+<div class="social-row">
+<span class="social-label">Follow me</span>
+<a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
+<a href="#" class="social-icon twitter"><i class="fab fa-x-twitter"></i></a>
+<a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="#" class="social-icon github"><i class="fab fa-github"></i></a>
+<a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+<a href="https://wa.me/254789279203" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+</div>
+<div class="hero-stats">
+<div><div class="stat-num">3+</div><div class="stat-lbl">Years Experience</div></div>
+<div><div class="stat-num">10+</div><div class="stat-lbl">Projects Delivered</div></div>
+<div><div class="stat-num">4</div><div class="stat-lbl">Service Areas</div></div>
+</div>
+</div>
+<div class="hero-right">
+<div class="profile-card">
+<div class="profile-img-box">👨🏾‍💻</div>
+<div class="float-badge tl">
+<div class="fb-icon">⚙️</div>
+<div><div class="fb-num">10+</div><div class="fb-lbl">Systems Built</div></div>
+</div>
+<div class="float-badge br">
+<div class="fb-icon">⭐</div>
+<div><div class="fb-num">100%</div><div class="fb-lbl">Satisfaction</div></div>
+</div>
+</div>
+</div>
+</section>
+<!-- PAGE 2: GO DIGITAL -->
+<section class="go-digital" id="go-digital">
+<div class="gd-top reveal">
+<div>
+<span class="gd-label">The Problem</span>
+<h2 class="gd-headline">Go Digital<br><span class="accent-purple">Now.</span></h2>
+<p class="gd-sub">Most Kenyan businesses are still running on paper, WhatsApp screenshots, and guesswork. Every day without a digital system is a day of lost revenue, missed stock, and preventable errors.</p>
+<p class="gd-sub">The businesses that thrive are going digital <strong style="color:#fff;">today</strong> — not next year. <strong style="color:#a78bfa;">Now.</strong></p>
+<a href="#contact" class="btn-white" style="margin-top:1rem"><i class="fa fa-rocket"></i> Start Your Digital Journey</a>
+</div>
+<div class="problems-grid">
+<div class="problem-card"><div class="problem-icon">📦</div><h4>Lost Stock</h4><p>No tracking means shrinkage, theft, and shortages you never see coming.</p></div>
+<div class="problem-card"><div class="problem-icon">📋</div><h4>Manual Records</h4><p>Paper books get lost, corrupted, or simply wrong. You can't grow on guesswork.</p></div>
+<div class="problem-card"><div class="problem-icon">💸</div><h4>Revenue Leaks</h4><p>Wrong pricing and unrecorded sales drain your profits silently every day.</p></div>
+<div class="problem-card"><div class="problem-icon">⏱️</div><h4>Wasted Time</h4><p>Manual processes eat hours daily that could grow your business.</p></div>
+<div class="problem-card"><div class="problem-icon">📊</div><h4>No Insights</h4><p>Without data you can't know what's selling and what decisions to make.</p></div>
+<div class="problem-card"><div class="problem-icon">🔒</div><h4>No Security</h4><p>Paper records have no access control — anyone can alter figures.</p></div>
+</div>
+</div>
+<div class="solution-bar reveal">
+<div class="sol-col bad">
+<h4><i class="fa fa-times-circle" style="color:#f87171"></i> Without a Digital System</h4>
+<ul>
+<li><i class="fa fa-times"></i> Stock counted manually every day</li>
+<li><i class="fa fa-times"></i> Sales recorded in a book or WhatsApp</li>
+<li><i class="fa fa-times"></i> No way to know your daily profit</li>
+<li><i class="fa fa-times"></i> Customers wait long at checkout</li>
+<li><i class="fa fa-times"></i> Reordering based on guesswork</li>
+<li><i class="fa fa-times"></i> Staff can manipulate figures easily</li>
+</ul>
+</div>
+<div class="sol-divider"><div class="sol-vs">VS</div></div>
+<div class="sol-col good">
+<h4><i class="fa fa-check-circle" style="color:#34d399"></i> With Okong'o's Systems</h4>
+<ul>
+<li><i class="fa fa-check"></i> Real-time stock tracking automatically</li>
+<li><i class="fa fa-check"></i> Every sale recorded instantly by barcode</li>
+<li><i class="fa fa-check"></i> Live profit &amp; loss on your dashboard</li>
+<li><i class="fa fa-check"></i> Checkout in seconds with barcode scanner</li>
+<li><i class="fa fa-check"></i> Automatic low stock alerts</li>
+<li><i class="fa fa-check"></i> Full audit trail — nothing hidden</li>
+</ul>
+</div>
+</div>
+<div class="gd-cta reveal">
+<div>
+<h3>Ready to Go Digital?</h3>
+<p>Join Nairobi businesses already running smarter with custom digital systems.</p>
+</div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;">
+<a href="#contact" class="btn-white"><i class="fa fa-phone"></i> Talk to Me Today</a>
+<a href="#services" class="btn-ghost"><i class="fa fa-list"></i> See All Services</a>
+</div>
+</div>
+</section>
+<!-- SERVICES -->
+<section id="services">
+<div class="section-header reveal">
+<span class="section-label">What I Do</span>
+<h2 class="section-title">Services I Offer</h2>
+<p class="section-sub">End-to-end digital solutions built for real Kenyan businesses — practical, affordable, and built to last.</p>
+</div>
+<div class="services-grid reveal">
+<div class="service-card">
+<div class="service-icon blue"><i class="fa fa-mobile-alt"></i></div>
+<h3>App Development</h3>
+<p>Custom mobile and web applications for your business. Built fast, designed clean, and made to scale with your growth.</p>
+<a href="#contact" class="service-arrow">Get started <i class="fa fa-arrow-right"></i></a>
+</div>
+<div class="service-card">
+<div class="service-icon green"><i class="fa fa-cogs"></i></div>
+<h3>Systems Development</h3>
+<p>POS systems, inventory managers, Chama apps, and custom business tools that automate your day-to-day operations.</p>
+<a href="#contact" class="service-arrow" style="color:var(--accent-green)">Get started <i class="fa fa-arrow-right"></i></a>
+</div>
+<div class="service-card">
+<div class="service-icon purple"><i class="fa fa-paint-brush"></i></div>
+<h3>Graphic Design</h3>
+<p>Logos, brand identity, social media graphics, and marketing materials that make your business look professional.</p>
+<a href="#contact" class="service-arrow" style="color:var(--accent-purple)">Get started <i class="fa fa-arrow-right"></i></a>
+</div>
+<div class="service-card">
+<div class="service-icon orange"><i class="fa fa-globe"></i></div>
+<h3>Website Development</h3>
+<p>Developing your functional and professional websites that connect your business to the online community.</p>
+<a href="#contact" class="service-arrow" style="color:var(--accent-orange)">Get started <i class="fa fa-arrow-right"></i></a>
+</div>
+</div>
+</section>
+<!-- PROJECTS -->
+<section id="projects">
+<div class="section-header reveal">
+<span class="section-label">My Work</span>
+<h2 class="section-title">Recent Projects</h2>
+<p class="section-sub">Real systems built for real Kenyan businesses — see the actual interfaces below.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem;" class="reveal">
+<!-- Project 1: CareFlow Pharmacy POS -->
+<div class="proj-card" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(15,23,42,.1);border:1.5px solid var(--border);">
+<!-- Browser bar -->
+<div style="display:flex;align-items:center;gap:7px;padding:.65rem 1rem;background:#f8f9fa;border-bottom:1px solid var(--border);">
+<div class="dot-red"></div><div class="dot-yellow"></div><div class="dot-green"></div>
+<div class="proj-url" style="flex:1;background:#fff;border:1px solid var(--border);border-radius:6px;padding:.28rem .8rem;font-size:.7rem;color:var(--text2);display:flex;align-items:center;gap:5px;">
+<i class="fa fa-lock" style="color:var(--accent-green);font-size:.6rem;"></i> spiked-care-flow-connect.base44.app
+</div>
+</div>
+<!-- App UI mockup - CareFlow -->
+<div style="height:320px;overflow:hidden;background:#f0f4f8;display:flex;">
+<!-- Sidebar -->
+<div style="width:180px;background:#1a365d;display:flex;flex-direction:column;padding:.8rem 0;flex-shrink:0;">
+<div style="padding:.6rem 1rem;margin-bottom:.5rem;">
+<div style="background:#2d4a7a;border-radius:8px;padding:.5rem .7rem;display:flex;align-items:center;gap:8px;">
+<div style="width:28px;height:28px;border-radius:6px;background:#3182ce;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;font-weight:700;">CF</div>
+<div><div style="font-size:.65rem;font-weight:700;color:#fff;">CareFlow</div><div style="font-size:.55rem;color:rgba(255,255,255,.5);">Pharmacy POS</div></div>
+</div>
+</div>
+<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;background:#2d4a7a;margin:0 .5rem;border-radius:6px;margin-bottom:.2rem;">
+<i class="fa fa-th-large" style="color:#63b3ed;font-size:.7rem;width:14px;"></i>
+<span style="font-size:.65rem;color:#fff;font-weight:600;">Dashboard</span>
+</div>
+<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-pills" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
+<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Medicines</span>
+</div>
+<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-shopping-cart" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
+<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Sales / POS</span>
+</div>
+<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-boxes" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
+<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Inventory</span>
+</div>
+<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-user-injured" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
+<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Patients</span>
+</div>
+<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-chart-bar" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
+<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Reports</span>
+</div>
+<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;">
+<i class="fa fa-bell" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
+<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Alerts</span>
+</div>
+</div>
+<!-- Main content -->
+<div style="flex:1;padding:1rem;overflow:hidden;">
+<div style="margin-bottom:.8rem;">
+<div style="font-size:.85rem;font-weight:700;color:#1a202c;">Welcome back, Alphonce</div>
+<div style="font-size:.6rem;color:#718096;">Thursday, May 14, 2026 — CareFlow Pharmacy</div>
+</div>
+<!-- Stat cards -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.6rem;">
+<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
+<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Today Sales</div>
+<div style="font-size:.9rem;font-weight:800;color:#1a202c;">KES 12,450</div>
+<div style="font-size:.55rem;color:#38a169;">↑ 18% vs yesterday</div>
+</div>
+<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
+<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Items Sold</div>
+<div style="font-size:.9rem;font-weight:800;color:#1a202c;">47</div>
+<div style="font-size:.55rem;color:#3182ce;">Transactions today</div>
+</div>
+<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
+<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Low Stock</div>
+<div style="font-size:.9rem;font-weight:800;color:#e53e3e;">8</div>
+<div style="font-size:.55rem;color:#e53e3e;">Items need reorder</div>
+</div>
+<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
+<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Prescriptions</div>
+<div style="font-size:.9rem;font-weight:800;color:#1a202c;">23</div>
+<div style="font-size:.55rem;color:#718096;">Filled today</div>
+</div>
+</div>
+<!-- Recent sales table -->
+<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
+<div style="font-size:.62rem;font-weight:700;color:#1a202c;margin-bottom:.5rem;">Recent Transactions</div>
+<div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid #f7fafc;">
+<span style="font-size:.55rem;color:#4a5568;">Amoxicillin 500mg x3</span>
+<span style="font-size:.55rem;font-weight:600;color:#38a169;">KES 450</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid #f7fafc;">
+<span style="font-size:.55rem;color:#4a5568;">Paracetamol 1g x10</span>
+<span style="font-size:.55rem;font-weight:600;color:#38a169;">KES 200</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:.25rem 0;">
+<span style="font-size:.55rem;color:#4a5568;">Metformin 850mg x30</span>
+<span style="font-size:.55rem;font-weight:600;color:#38a169;">KES 1,200</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card body -->
+<div class="proj-body">
+<span class="proj-tag blue">Systems Development</span>
+<h3>CareFlow — Pharmacy POS</h3>
+<p>A full pharmacy point-of-sale system with barcode scanning, drug inventory management, sales tracking, low stock alerts, and patient prescription records.</p>
+<div class="proj-meta">
+<span class="proj-chip">Pharmacy POS</span>
+<span class="proj-chip">Barcode</span>
+<span class="proj-chip">Inventory</span>
+<span class="proj-chip">Prescriptions</span>
+</div>
+</div>
+</div>
+<!-- Project 2: Ugambe Chama Pro -->
+<div class="proj-card" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(15,23,42,.1);border:1.5px solid var(--border);">
+<!-- Browser bar -->
+<div style="display:flex;align-items:center;gap:7px;padding:.65rem 1rem;background:#f8f9fa;border-bottom:1px solid var(--border);">
+<div class="dot-red"></div><div class="dot-yellow"></div><div class="dot-green"></div>
+<div class="proj-url" style="flex:1;background:#fff;border:1px solid var(--border);border-radius:6px;padding:.28rem .8rem;font-size:.7rem;color:var(--text2);display:flex;align-items:center;gap:5px;">
+<i class="fa fa-lock" style="color:var(--accent-green);font-size:.6rem;"></i> ugambe-chama-flow.base44.app
+</div>
+</div>
+<!-- App UI mockup - Ugambe Chama (exact replica from screenshot) -->
+<div style="height:320px;overflow:hidden;background:#f7f8f9;display:flex;">
+<!-- Sidebar - dark green like in screenshot -->
+<div style="width:175px;background:#1c3a2e;display:flex;flex-direction:column;padding:.8rem 0;flex-shrink:0;">
+<div style="padding:.5rem .8rem;margin-bottom:.6rem;">
+<div style="background:#2d5a42;border-radius:8px;padding:.5rem .7rem;display:flex;align-items:center;gap:8px;">
+<div style="width:26px;height:26px;border-radius:6px;background:#f6ad55;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#1c3a2e;font-weight:800;">U</div>
+<div><div style="font-size:.62rem;font-weight:700;color:#fff;">Ugambe Union</div><div style="font-size:.52rem;color:rgba(255,255,255,.5);">Bodaboda Group</div></div>
+</div>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;background:#2d5a42;margin:0 .5rem;border-radius:6px;margin-bottom:.2rem;">
+<i class="fa fa-th-large" style="color:#68d391;font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:#fff;font-weight:600;">Dashboard</span>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-users" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Members</span>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-wallet" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Contributions</span>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-hand-holding-usd" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Loans</span>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-chart-line" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Investments</span>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-calendar" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Meetings</span>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-file-alt" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Reports</span>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
+<i class="fa fa-bell" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Notifications</span>
+<div style="background:#e53e3e;color:#fff;font-size:.45rem;padding:.1rem .35rem;border-radius:100px;font-weight:700;margin-left:auto;">3</div>
+</div>
+<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;">
+<i class="fa fa-cog" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
+<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Settings</span>
+</div>
+</div>
+<!-- Main content -->
+<div style="flex:1;padding:1rem;overflow:hidden;background:#f7f8f9;">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+<div>
+<div style="font-size:.88rem;font-weight:800;color:#1a202c;">Welcome back, Alphonce</div>
+<div style="font-size:.58rem;color:#718096;">Thursday, May 14, 2026 — Ugambe Union Group</div>
+</div>
+<div style="display:flex;gap:.3rem;">
+<div style="font-size:.52rem;padding:.2rem .5rem;border:1px solid #e2e8f0;border-radius:6px;color:#718096;background:#fff;">3 Months</div>
+<div style="font-size:.52rem;padding:.2rem .5rem;border-radius:6px;color:#fff;background:#1c3a2e;font-weight:600;">6 Months</div>
+<div style="font-size:.52rem;padding:.2rem .5rem;border:1px solid #e2e8f0;border-radius:6px;color:#718096;background:#fff;">12 Months</div>
+</div>
+</div>
+<!-- 4 stat cards like screenshot -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin-bottom:.5rem;">
+<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
+<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Total Savings</div>
+<div style="font-size:.8rem;font-weight:800;color:#1a202c;margin:.1rem 0;">KES 0</div>
+<div style="font-size:.48rem;color:#718096;">All confirmed</div>
+</div>
+<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
+<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Active Members</div>
+<div style="font-size:.8rem;font-weight:800;color:#1a202c;margin:.1rem 0;">1</div>
+<div style="font-size:.48rem;color:#718096;">Currently active</div>
+</div>
+<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
+<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Active Loans</div>
+<div style="font-size:.8rem;font-weight:800;color:#1a202c;margin:.1rem 0;">KES 0</div>
+<div style="font-size:.48rem;color:#718096;">0 active loans</div>
+</div>
+<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
+<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Invested</div>
+<div style="font-size:.75rem;font-weight:800;color:#1a202c;margin:.1rem 0;">KES 200,000</div>
+<div style="font-size:.48rem;color:#718096;">1 active investment</div>
+</div>
+</div>
+<!-- Second row of cards like screenshot -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin-bottom:.5rem;">
+<div style="background:#e8f4ed;border-radius:8px;padding:.5rem;border:1px solid #c6e4d0;">
+<div style="font-size:.48rem;color:#276749;">Period Collections</div>
+<div style="font-size:.8rem;font-weight:800;color:#276749;">KES 0</div>
+<div style="font-size:.48rem;color:#276749;">In selected range</div>
+</div>
+<div style="background:#fffbeb;border-radius:8px;padding:.5rem;border:1px solid #fde68a;">
+<div style="font-size:.48rem;color:#d97706;">Pending Loans</div>
+<div style="font-size:.8rem;font-weight:800;color:#d97706;">0</div>
+<div style="font-size:.48rem;color:#d97706;">Awaiting review</div>
+</div>
+<div style="background:#eff6ff;border-radius:8px;padding:.5rem;border:1px solid #bfdbfe;">
+<div style="font-size:.48rem;color:#1d4ed8;">Total Contributions</div>
+<div style="font-size:.8rem;font-weight:800;color:#1d4ed8;">0</div>
+<div style="font-size:.48rem;color:#1d4ed8;">Records in range</div>
+</div>
+<div style="background:#faf5ff;border-radius:8px;padding:.5rem;border:1px solid #e9d5ff;">
+<div style="font-size:.48rem;color:#7c3aed;">Meetings Held</div>
+<div style="font-size:.8rem;font-weight:800;color:#7c3aed;">0</div>
+<div style="font-size:.48rem;color:#7c3aed;">Completed</div>
+</div>
+</div>
+<!-- Chart placeholder -->
+<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
+<div style="font-size:.6rem;font-weight:700;color:#1a202c;margin-bottom:.3rem;">Monthly Contributions</div>
+<div style="font-size:.52rem;color:#718096;margin-bottom:.4rem;">Confirmed contributions by month (KES)</div>
+<div style="display:flex;align-items:flex-end;gap:4px;height:30px;">
+<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:30%;"></div>
+<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:20%;"></div>
+<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:50%;"></div>
+<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:10%;"></div>
+<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:40%;"></div>
+<div style="flex:1;background:#1c3a2e;border-radius:2px 2px 0 0;height:100%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card body -->
+<div class="proj-body">
+<span class="proj-tag green">App Development</span>
+<h3>Ugambe Chama Pro</h3>
+<p>A complete chama management platform handling member contributions, loans, investment tracking, meetings, and real-time financial dashboards.</p>
+<div class="proj-meta">
+<span class="proj-chip">Chama Management</span>
+<span class="proj-chip">M-Pesa</span>
+<span class="proj-chip">Loans</span>
+<span class="proj-chip">Investments</span>
+</div>
+</div>
+</div>
+<!-- Project 3: Coming Soon -->
+<div class="proj-card" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(15,23,42,.1);border:1.5px solid var(--border);">
+<div style="height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#fff7ed,#fed7aa);border-bottom:1px solid var(--border);">
+<div style="font-size:4rem;margin-bottom:1rem;">📊</div>
+<div style="background:#fff;color:var(--accent-orange);font-size:.75rem;padding:.35rem 1.1rem;border-radius:100px;font-weight:600;border:1.5px solid #fed7aa;box-shadow:0 2px 8px rgba(234,88,12,.1);">Coming Soon</div>
+</div>
+<div class="proj-body">
+<span class="proj-tag orange">Data Analytics</span>
+<h3>Business Intelligence Dashboard</h3>
+<p>Interactive dashboards giving business owners real-time visibility into sales, stock, and profitability.</p>
+<div class="proj-meta">
+<span class="proj-chip">Dashboards</span>
+<span class="proj-chip">Reports</span>
+<span class="proj-chip">Data Viz</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- RATE CARDS -->
+<section id="rates" style="background:linear-gradient(135deg,#f8faff,#f3f0ff);">
+<div class="section-header reveal">
+<span class="section-label">Pricing</span>
+<h2 class="section-title">Digital Services Rate Card</h2>
+<p class="section-sub">Flexible pricing tailored to project scope, complexity, timelines, and client requirements.</p>
+</div>
+<div class="rates-grid reveal">
+<!-- App Dev -->
+<div class="rate-card">
+<div class="rate-card-head blue">
+<div class="rate-icon blue"><i class="fa fa-mobile-alt"></i></div>
+<h3>App Development</h3>
+<p>Mobile &amp; Web Applications</p>
+</div>
+<div class="rate-body">
+<p class="rate-cat">Mobile Apps</p>
+<ul class="rate-list">
+<li><span>Basic apps</span><span>KSh 22.5K – 45K</span></li>
+<li><span>Medium-feature apps</span><span>KSh 49K – 75K</span></li>
+<li><span>Advanced/custom</span><span>KSh 90K+</span></li>
+</ul>
+<p class="rate-cat">Web Apps</p>
+<ul class="rate-list">
+<li><span>Basic web apps</span><span>KSh 19K – 52.5K</span></li>
+<li><span>Business platforms</span><span>KSh 52.5K – 90K</span></li>
+<li><span>Enterprise/custom</span><span>KSh 90K+</span></li>
+</ul>
+<a href="#contact" class="rate-btn blue">Get a Quote <i class="fa fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- Graphic Design -->
+<div class="rate-card">
+<div class="rate-card-head purple">
+<div class="rate-icon purple"><i class="fa fa-paint-brush"></i></div>
+<h3>Graphic Design</h3>
+<p>Branding &amp; Visual Design</p>
+</div>
+<div class="rate-body">
+<p class="rate-cat">Design Services</p>
+<ul class="rate-list">
+<li><span>Posters / Flyers</span><span>KSh 500 – 3K</span></li>
+<li><span>Social media designs</span><span>KSh 500 – 2.5K</span></li>
+<li><span>Business cards</span><span>KSh 1K – 3K</span></li>
+<li><span>Banners</span><span>KSh 2K – 8K</span></li>
+<li><span>Brand identity packages</span><span>KSh 10K – 60K+</span></li>
+<li><span>Logo design packages</span><span>KSh 2K – 10K+</span></li>
+</ul>
+<a href="#contact" class="rate-btn purple">Get a Quote <i class="fa fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- System Dev -->
+<div class="rate-card">
+<div class="rate-card-head green">
+<div class="rate-icon green"><i class="fa fa-cogs"></i></div>
+<h3>System Development</h3>
+<p>Custom Business Systems</p>
+</div>
+<div class="rate-body">
+<p class="rate-cat">Custom Systems</p>
+<ul class="rate-list">
+<li><span>Inventory systems</span><span>KSh 22.5K – 75K</span></li>
+<li><span>School management</span><span>KSh 52.5K – 150K</span></li>
+<li><span>Pharmacy systems</span><span>KSh 37.5K – 112.5K</span></li>
+<li><span>Business management</span><span>KSh 60K – 225K+</span></li>
+<li><span>Hospital management</span><span>KSh 52.5K – 150K</span></li>
+<li><span>Enterprise systems</span><span>KSh 150K+</span></li>
+</ul>
+<a href="#contact" class="rate-btn green">Get a Quote <i class="fa fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- Website Development -->
+<div class="rate-card">
+<div class="rate-card-head orange">
+<div class="rate-icon orange"><i class="fa fa-globe"></i></div>
+<h3>Website Development</h3>
+<p>Business &amp; Custom Websites</p>
+</div>
+<div class="rate-body">
+<p class="rate-cat">Website Packages</p>
+<ul class="rate-list">
+<li><span>Landing Page</span><span>KSh 15K – 30K</span></li>
+<li><span>Basic Business (4–6 pg)</span><span>KSh 30K – 60K</span></li>
+<li><span>Standard Business (6–12 pg)</span><span>KSh 40K – 80K</span></li>
+<li><span>Corporate Website</span><span>KSh 80K – 300K</span></li>
+<li><span>E-commerce Website</span><span>KSh 60K – 200K+</span></li>
+<li><span>School Website</span><span>KSh 70K – 180K</span></li>
+<li><span>Hospital Website</span><span>KSh 60K – 150K</span></li>
+<li><span>Hotel Website</span><span>KSh 60K – 180K</span></li>
+<li><span>Real Estate Website</span><span>KSh 50K – 200K</span></li>
+<li><span>Custom Web Application</span><span>From KSh 150K</span></li>
+</ul>
+<p class="rate-cat">Optional Add-ons</p>
+<ul class="rate-list">
+<li><span>Domain registration</span><span>Cost + 1K–2K</span></li>
+<li><span>Web hosting setup</span><span>KSh 5K–20K/yr</span></li>
+<li><span>SSL certificate setup</span><span>Incl. or 2K–5K</span></li>
+<li><span>Professional email setup</span><span>KSh 3K–10K</span></li>
+<li><span>SEO</span><span>KSh 15K–50K</span></li>
+<li><span>Google Maps integration</span><span>KSh 2K–5K</span></li>
+<li><span>WhatsApp integration</span><span>KSh 2K–5K</span></li>
+<li><span>Payment gateway integration</span><span>KSh 15K–50K</span></li>
+<li><span>Blog setup</span><span>KSh 5K–15K</span></li>
+<li><span>Website maintenance</span><span>KSh 3K–15K/mo</span></li>
+</ul>
+<a href="#contact" class="rate-btn orange">Get a Quote <i class="fa fa-arrow-right"></i></a>
+</div>
+</div>
+</div>
+<div style="margin-top:2.5rem;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:1.5rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;box-shadow:var(--shadow);" class="reveal">
+<i class="fa fa-info-circle" style="color:var(--accent);font-size:1.2rem;flex-shrink:0;"></i>
+<p style="color:var(--text2);font-size:.875rem;font-weight:300;line-height:1.7;flex:1;">All prices are estimates and may vary based on project complexity, features, timelines, and specific requirements. <strong style="color:var(--text)">Contact me for a free custom quote</strong> tailored to your exact project.</p>
+<a href="#contact" class="btn-primary" style="font-size:.855rem;padding:.65rem 1.4rem;flex-shrink:0;">Get Free Quote</a>
+</div>
+</section>
+<!-- ABOUT -->
+<section id="about">
+<div class="about-grid">
+<div class="about-img-box reveal">👨🏾‍💻</div>
+<div class="about-text reveal">
+<span class="section-label">About Me</span>
+<h2 class="section-title">Building Things That Actually Work</h2>
+<p>I'm Okong'o Ouma, a Software Developer based in Nairobi, Kenya. I build custom digital solutions that help businesses stop losing money to manual processes and start growing with the power of technology.</p>
+<p>From boutique POS systems to mobile apps, data dashboards, and graphic design — I focus on practical technology that works in the real Kenyan business environment, including M-Pesa integration and offline capabilities.</p>
+<div class="skills-chips">
+<span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">MySQL</span><span class="chip">App Development</span><span class="chip">UI/UX Design</span><span class="chip">Data Analytics</span><span class="chip">Graphic Design</span><span class="chip">M-Pesa Integration</span><span class="chip">Barcode Systems</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section id="contact">
+<div class="contact-grid">
+<div class="reveal">
+<span class="section-label">Contact</span>
+<h2 class="section-title">Let's Work Together</h2>
+<p style="color:var(--text2);font-weight:300;line-height:1.8;font-size:.92rem;">Have a project in mind? Need a custom system for your business? Reach out — I respond fast.</p>
+<div class="contact-details">
+<a href="tel:0789279203" class="c-item">
+<div class="c-icon"><i class="fa fa-phone"></i></div>
+<div><div class="c-label">Phone / WhatsApp</div><div class="c-val">0789 279 203</div></div>
+</a>
+<a href="mailto:okongoalphonce06@gmail.com" class="c-item">
+<div class="c-icon" style="background:#ecfdf5;color:var(--accent-green);"><i class="fa fa-envelope"></i></div>
+<div><div class="c-label">Email</div><div class="c-val">okongoalphonce06@gmail.com</div></div>
+</a>
+<div class="c-item">
+<div class="c-icon" style="background:#f5f3ff;color:var(--accent-purple);"><i class="fa fa-map-marker-alt"></i></div>
+<div><div class="c-label">Location</div><div class="c-val">Nairobi, Kenya</div></div>
+</div>
+</div>
+</div>
+<div class="contact-form reveal">
+<div class="form-row">
+<div class="form-group"><label>Your Name</label><input type="text" placeholder="John Kamau"></div>
+<div class="form-group"><label>Your Email</label><input type="email" placeholder="john@example.com"></div>
+</div>
+<div class="form-group">
+<label>Service Needed</label>
+<select><option value="">Select a service...</option><option>App Development</option><option>Systems Development (POS etc)</option><option>Graphic Design</option><option>Website Development</option><option>Other</option></select>
+</div>
+<div class="form-group">
+<label>Budget Range</label>
+<select><option value="">Select budget...</option><option>Under KSh 20,000</option><option>KSh 20,000 – 50,000</option><option>KSh 50,000 – 100,000</option><option>Above KSh 100,000</option></select>
+</div>
+<div class="form-group"><label>Tell Me About Your Project</label><textarea placeholder="What do you need built?"></textarea></div>
+<button class="btn-primary" style="width:100%;border:none;font-size:.9rem;padding:1rem;justify-content:center;"><i class="fa fa-paper-plane"></i> Send Message</button>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>
+<div class="footer-logo">Okong'o<span>.</span></div>
+<p>© 2026 Okong'o Ouma · Nairobi, Kenya</p>
+<div class="footer-links">
+<a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+</div>
+</footer>
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+let cur='';
+secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id;});
+document.querySelectorAll('.nav-menu a').forEach(a=>{
+a.style.color=a.getAttribute('href')===`#${cur}`?'var(--accent)':'';
+});
+});
+</script>
+</body>
+</html>
