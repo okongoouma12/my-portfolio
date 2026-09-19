@@ -28,8 +28,9 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0 5%;height:68px;background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);box-shadow:0 1px 12px rgba(15,23,42,.06);}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--text);text-decoration:none;}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--text);text-decoration:none;display:flex;align-items:center;}
 .nav-logo span{color:var(--accent);}
+.nav-logo img{height:36px;width:auto;display:block;animation:floatSoft 5s ease-in-out infinite;}
 .nav-menu{display:flex;align-items:center;gap:.4rem;list-style:none;}
 .nav-menu>li{position:relative;}
 .nav-menu>li>a{display:flex;align-items:center;gap:5px;color:var(--text2);text-decoration:none;font-size:.875rem;padding:.5rem .9rem;border-radius:8px;transition:color .2s,background .2s;}
@@ -57,6 +58,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;padding:.35rem 1rem;border-radius:100px;font-size:.78rem;color:var(--accent);margin-bottom:1.8rem;letter-spacing:.4px;font-weight:500;}
 .dot{width:7px;height:7px;background:var(--accent-green);border-radius:50%;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes floatSoft{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes floatCard{0%,100%{transform:translateY(0) scale(1.02);}50%{transform:translateY(-6px) scale(1.02);}}
+.float-anim{animation:floatSoft 4s ease-in-out infinite;}
 .hero-greeting{font-size:1rem;color:var(--text2);font-weight:300;margin-bottom:.4rem;}
 .hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:.5rem;}
 .hero-name .accent{color:var(--accent);}
@@ -83,7 +87,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .stat-lbl{font-size:.76rem;color:var(--text2);margin-top:3px;}
 .hero-right{display:flex;justify-content:center;animation:fadeUp .9s .2s ease both;}
 .profile-card{position:relative;width:340px;}
-.profile-img-box{width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,#eff6ff,#dbeafe);border-radius:24px;border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:7rem;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
+.profile-img-box{width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,#eff6ff,#dbeafe);border-radius:24px;border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--text2);text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
 .profile-img-box::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(239,246,255,.5));}
 .float-badge{position:absolute;background:#fff;border:1px solid var(--border);border-radius:14px;padding:.8rem 1.1rem;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);}
 .float-badge.tl{top:1.2rem;left:-2rem;}
@@ -204,7 +208,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 /* ABOUT */
 #about{padding:6rem 5%;background:linear-gradient(135deg,#f8faff 0%,#f0f4ff 100%);}
 .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:center;}
-.about-img-box{aspect-ratio:4/5;background:linear-gradient(145deg,#dbeafe,#ede9fe);border-radius:24px;border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
+.about-img-box{aspect-ratio:4/5;background:linear-gradient(145deg,#dbeafe,#ede9fe);border-radius:24px;border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--text2);text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
 .about-img-box::after{content:'Nairobi 🇰🇪';position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;font-family:'Syne',sans-serif;padding:.4rem 1rem;border-radius:100px;white-space:nowrap;}
 .about-text p{color:var(--text2);font-weight:300;line-height:1.9;font-size:.92rem;margin-bottom:1.2rem;}
 .skills-chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem;}
@@ -257,7 +261,7 @@ footer{flex-direction:column;text-align:center;}
 <body>
 <!-- NAV -->
 <nav>
-<a href="#home" class="nav-logo">Okong'o<span>.</span></a>
+<a href="#home" class="nav-logo"><img src="images/logo.png" alt="OkoTeq Designs"></a>
 <ul class="nav-menu">
 <li>
 <a href="#about">About <i class="fa fa-chevron-down chevron"></i></a>
@@ -328,7 +332,7 @@ I help Kenyan businesses move from manual processes to smart, scalable digital s
 </div>
 <div class="hero-right">
 <div class="profile-card">
-<div class="profile-img-box">👨🏾‍💻</div>
+<div class="profile-img-box"><img src="images/profile.jpg" alt="Okong'o Ouma" style="width:100%;height:100%;object-fit:cover;position:relative;z-index:0;"></div>
 <div class="float-badge tl">
 <div class="fb-icon">⚙️</div>
 <div><div class="fb-num">10+</div><div class="fb-lbl">Systems Built</div></div>
@@ -446,91 +450,9 @@ I help Kenyan businesses move from manual processes to smart, scalable digital s
 <i class="fa fa-lock" style="color:var(--accent-green);font-size:.6rem;"></i> spiked-care-flow-connect.base44.app
 </div>
 </div>
-<!-- App UI mockup - CareFlow -->
-<div style="height:320px;overflow:hidden;background:#f0f4f8;display:flex;">
-<!-- Sidebar -->
-<div style="width:180px;background:#1a365d;display:flex;flex-direction:column;padding:.8rem 0;flex-shrink:0;">
-<div style="padding:.6rem 1rem;margin-bottom:.5rem;">
-<div style="background:#2d4a7a;border-radius:8px;padding:.5rem .7rem;display:flex;align-items:center;gap:8px;">
-<div style="width:28px;height:28px;border-radius:6px;background:#3182ce;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;font-weight:700;">CF</div>
-<div><div style="font-size:.65rem;font-weight:700;color:#fff;">CareFlow</div><div style="font-size:.55rem;color:rgba(255,255,255,.5);">Pharmacy POS</div></div>
-</div>
-</div>
-<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;background:#2d4a7a;margin:0 .5rem;border-radius:6px;margin-bottom:.2rem;">
-<i class="fa fa-th-large" style="color:#63b3ed;font-size:.7rem;width:14px;"></i>
-<span style="font-size:.65rem;color:#fff;font-weight:600;">Dashboard</span>
-</div>
-<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-pills" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
-<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Medicines</span>
-</div>
-<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-shopping-cart" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
-<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Sales / POS</span>
-</div>
-<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-boxes" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
-<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Inventory</span>
-</div>
-<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-user-injured" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
-<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Patients</span>
-</div>
-<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-chart-bar" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
-<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Reports</span>
-</div>
-<div style="padding:.45rem 1rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;">
-<i class="fa fa-bell" style="color:rgba(255,255,255,.5);font-size:.7rem;width:14px;"></i>
-<span style="font-size:.65rem;color:rgba(255,255,255,.6);">Alerts</span>
-</div>
-</div>
-<!-- Main content -->
-<div style="flex:1;padding:1rem;overflow:hidden;">
-<div style="margin-bottom:.8rem;">
-<div style="font-size:.85rem;font-weight:700;color:#1a202c;">Welcome back, Alphonce</div>
-<div style="font-size:.6rem;color:#718096;">Thursday, May 14, 2026 — CareFlow Pharmacy</div>
-</div>
-<!-- Stat cards -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.6rem;">
-<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
-<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Today Sales</div>
-<div style="font-size:.9rem;font-weight:800;color:#1a202c;">KES 12,450</div>
-<div style="font-size:.55rem;color:#38a169;">↑ 18% vs yesterday</div>
-</div>
-<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
-<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Items Sold</div>
-<div style="font-size:.9rem;font-weight:800;color:#1a202c;">47</div>
-<div style="font-size:.55rem;color:#3182ce;">Transactions today</div>
-</div>
-<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
-<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Low Stock</div>
-<div style="font-size:.9rem;font-weight:800;color:#e53e3e;">8</div>
-<div style="font-size:.55rem;color:#e53e3e;">Items need reorder</div>
-</div>
-<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
-<div style="font-size:.55rem;color:#718096;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem;">Prescriptions</div>
-<div style="font-size:.9rem;font-weight:800;color:#1a202c;">23</div>
-<div style="font-size:.55rem;color:#718096;">Filled today</div>
-</div>
-</div>
-<!-- Recent sales table -->
-<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
-<div style="font-size:.62rem;font-weight:700;color:#1a202c;margin-bottom:.5rem;">Recent Transactions</div>
-<div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid #f7fafc;">
-<span style="font-size:.55rem;color:#4a5568;">Amoxicillin 500mg x3</span>
-<span style="font-size:.55rem;font-weight:600;color:#38a169;">KES 450</span>
-</div>
-<div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid #f7fafc;">
-<span style="font-size:.55rem;color:#4a5568;">Paracetamol 1g x10</span>
-<span style="font-size:.55rem;font-weight:600;color:#38a169;">KES 200</span>
-</div>
-<div style="display:flex;justify-content:space-between;padding:.25rem 0;">
-<span style="font-size:.55rem;color:#4a5568;">Metformin 850mg x30</span>
-<span style="font-size:.55rem;font-weight:600;color:#38a169;">KES 1,200</span>
-</div>
-</div>
-</div>
+<!-- App preview - CareFlow POS -->
+<div style="height:320px;overflow:hidden;">
+<img src="images/pos-advert.jpg" alt="OkoTeq Smart POS System" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;animation:floatCard 5s ease-in-out infinite;">
 </div>
 <!-- Card body -->
 <div class="proj-body">
@@ -554,127 +476,9 @@ I help Kenyan businesses move from manual processes to smart, scalable digital s
 <i class="fa fa-lock" style="color:var(--accent-green);font-size:.6rem;"></i> ugambe-chama-flow.base44.app
 </div>
 </div>
-<!-- App UI mockup - Ugambe Chama (exact replica from screenshot) -->
-<div style="height:320px;overflow:hidden;background:#f7f8f9;display:flex;">
-<!-- Sidebar - dark green like in screenshot -->
-<div style="width:175px;background:#1c3a2e;display:flex;flex-direction:column;padding:.8rem 0;flex-shrink:0;">
-<div style="padding:.5rem .8rem;margin-bottom:.6rem;">
-<div style="background:#2d5a42;border-radius:8px;padding:.5rem .7rem;display:flex;align-items:center;gap:8px;">
-<div style="width:26px;height:26px;border-radius:6px;background:#f6ad55;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#1c3a2e;font-weight:800;">U</div>
-<div><div style="font-size:.62rem;font-weight:700;color:#fff;">Ugambe Union</div><div style="font-size:.52rem;color:rgba(255,255,255,.5);">Bodaboda Group</div></div>
-</div>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;background:#2d5a42;margin:0 .5rem;border-radius:6px;margin-bottom:.2rem;">
-<i class="fa fa-th-large" style="color:#68d391;font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:#fff;font-weight:600;">Dashboard</span>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-users" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Members</span>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-wallet" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Contributions</span>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-hand-holding-usd" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Loans</span>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-chart-line" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Investments</span>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-calendar" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Meetings</span>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-file-alt" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Reports</span>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;margin-bottom:.2rem;">
-<i class="fa fa-bell" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Notifications</span>
-<div style="background:#e53e3e;color:#fff;font-size:.45rem;padding:.1rem .35rem;border-radius:100px;font-weight:700;margin-left:auto;">3</div>
-</div>
-<div style="padding:.42rem .8rem;display:flex;align-items:center;gap:8px;margin:0 .5rem;">
-<i class="fa fa-cog" style="color:rgba(255,255,255,.5);font-size:.65rem;width:14px;"></i>
-<span style="font-size:.62rem;color:rgba(255,255,255,.6);">Settings</span>
-</div>
-</div>
-<!-- Main content -->
-<div style="flex:1;padding:1rem;overflow:hidden;background:#f7f8f9;">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
-<div>
-<div style="font-size:.88rem;font-weight:800;color:#1a202c;">Welcome back, Alphonce</div>
-<div style="font-size:.58rem;color:#718096;">Thursday, May 14, 2026 — Ugambe Union Group</div>
-</div>
-<div style="display:flex;gap:.3rem;">
-<div style="font-size:.52rem;padding:.2rem .5rem;border:1px solid #e2e8f0;border-radius:6px;color:#718096;background:#fff;">3 Months</div>
-<div style="font-size:.52rem;padding:.2rem .5rem;border-radius:6px;color:#fff;background:#1c3a2e;font-weight:600;">6 Months</div>
-<div style="font-size:.52rem;padding:.2rem .5rem;border:1px solid #e2e8f0;border-radius:6px;color:#718096;background:#fff;">12 Months</div>
-</div>
-</div>
-<!-- 4 stat cards like screenshot -->
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin-bottom:.5rem;">
-<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
-<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Total Savings</div>
-<div style="font-size:.8rem;font-weight:800;color:#1a202c;margin:.1rem 0;">KES 0</div>
-<div style="font-size:.48rem;color:#718096;">All confirmed</div>
-</div>
-<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
-<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Active Members</div>
-<div style="font-size:.8rem;font-weight:800;color:#1a202c;margin:.1rem 0;">1</div>
-<div style="font-size:.48rem;color:#718096;">Currently active</div>
-</div>
-<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
-<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Active Loans</div>
-<div style="font-size:.8rem;font-weight:800;color:#1a202c;margin:.1rem 0;">KES 0</div>
-<div style="font-size:.48rem;color:#718096;">0 active loans</div>
-</div>
-<div style="background:#fff;border-radius:8px;padding:.5rem;border:1px solid #e8ecf0;">
-<div style="font-size:.48rem;color:#718096;text-transform:uppercase;letter-spacing:.4px;">Invested</div>
-<div style="font-size:.75rem;font-weight:800;color:#1a202c;margin:.1rem 0;">KES 200,000</div>
-<div style="font-size:.48rem;color:#718096;">1 active investment</div>
-</div>
-</div>
-<!-- Second row of cards like screenshot -->
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin-bottom:.5rem;">
-<div style="background:#e8f4ed;border-radius:8px;padding:.5rem;border:1px solid #c6e4d0;">
-<div style="font-size:.48rem;color:#276749;">Period Collections</div>
-<div style="font-size:.8rem;font-weight:800;color:#276749;">KES 0</div>
-<div style="font-size:.48rem;color:#276749;">In selected range</div>
-</div>
-<div style="background:#fffbeb;border-radius:8px;padding:.5rem;border:1px solid #fde68a;">
-<div style="font-size:.48rem;color:#d97706;">Pending Loans</div>
-<div style="font-size:.8rem;font-weight:800;color:#d97706;">0</div>
-<div style="font-size:.48rem;color:#d97706;">Awaiting review</div>
-</div>
-<div style="background:#eff6ff;border-radius:8px;padding:.5rem;border:1px solid #bfdbfe;">
-<div style="font-size:.48rem;color:#1d4ed8;">Total Contributions</div>
-<div style="font-size:.8rem;font-weight:800;color:#1d4ed8;">0</div>
-<div style="font-size:.48rem;color:#1d4ed8;">Records in range</div>
-</div>
-<div style="background:#faf5ff;border-radius:8px;padding:.5rem;border:1px solid #e9d5ff;">
-<div style="font-size:.48rem;color:#7c3aed;">Meetings Held</div>
-<div style="font-size:.8rem;font-weight:800;color:#7c3aed;">0</div>
-<div style="font-size:.48rem;color:#7c3aed;">Completed</div>
-</div>
-</div>
-<!-- Chart placeholder -->
-<div style="background:#fff;border-radius:8px;padding:.6rem;border:1px solid #e2e8f0;">
-<div style="font-size:.6rem;font-weight:700;color:#1a202c;margin-bottom:.3rem;">Monthly Contributions</div>
-<div style="font-size:.52rem;color:#718096;margin-bottom:.4rem;">Confirmed contributions by month (KES)</div>
-<div style="display:flex;align-items:flex-end;gap:4px;height:30px;">
-<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:30%;"></div>
-<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:20%;"></div>
-<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:50%;"></div>
-<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:10%;"></div>
-<div style="flex:1;background:#e2e8f0;border-radius:2px 2px 0 0;height:40%;"></div>
-<div style="flex:1;background:#1c3a2e;border-radius:2px 2px 0 0;height:100%;"></div>
-</div>
-</div>
-</div>
+<!-- App preview - Chama Pro -->
+<div style="height:320px;overflow:hidden;">
+<img src="images/chama-pro-advert.jpg" alt="OkoTeq Chama Pro" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;animation:floatCard 5.5s ease-in-out infinite;animation-delay:.3s;">
 </div>
 <!-- Card body -->
 <div class="proj-body">
@@ -826,7 +630,7 @@ I help Kenyan businesses move from manual processes to smart, scalable digital s
 <!-- ABOUT -->
 <section id="about">
 <div class="about-grid">
-<div class="about-img-box reveal">👨🏾‍💻</div>
+<div class="about-img-box reveal"><img src="images/profile.jpg" alt="Okong'o Ouma" style="width:100%;height:100%;object-fit:cover;position:relative;z-index:0;"></div>
 <div class="about-text reveal">
 <span class="section-label">About Me</span>
 <h2 class="section-title">Building Things That Actually Work</h2>
@@ -836,6 +640,11 @@ I help Kenyan businesses move from manual processes to smart, scalable digital s
 <span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">MySQL</span><span class="chip">App Development</span><span class="chip">UI/UX Design</span><span class="chip">Data Analytics</span><span class="chip">Graphic Design</span><span class="chip">M-Pesa Integration</span><span class="chip">Barcode Systems</span>
 </div>
 </div>
+</div>
+<div class="reveal" style="margin-top:3.5rem;text-align:center;">
+<a href="#contact" style="display:inline-block;max-width:520px;width:100%;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);border:1.5px solid var(--border);">
+<img src="images/okoteq-advert.jpg" alt="OkoTeq Designs — Manage Your Organization Digitally" style="width:100%;display:block;animation:floatCard 6s ease-in-out infinite;animation-delay:.6s;">
+</a>
 </div>
 </section>
 <!-- CONTACT -->
